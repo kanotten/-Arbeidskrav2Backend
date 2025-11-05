@@ -13,3 +13,9 @@ FROM bok b
 LEFT JOIN eksemplar e ON e.ISBN = b.ISBN
 GROUP BY b.ISBN
 ORDER BY b.Tittel;
+
+SELECT
+FROM
+JOIN
+JOIN
+ORDER BY
