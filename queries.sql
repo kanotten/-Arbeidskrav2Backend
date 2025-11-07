@@ -19,8 +19,16 @@ SELECT*
 FROM bok
 WHERE Utgittår > 2000;
 
-
 /*Oppgave 3.2*/
 SELECT Forfatter, Tittel
 FROM bok
 ORDER BY Forfatter ASC;
+
+/*Oppgave 3.3*/
+SELECT*
+FROM bok
+WHERE AntallSider > 300;
+
+/*Oppgave 3.3*/
+INSERT INTO bok (ISBN, Tittel, Forfatter, Forlag, Utgittår, AntallSider)
+VALUES (9788201231111, 'Doom fox', 'iceberg slim', 'cappelen damm', 2022, 300);
