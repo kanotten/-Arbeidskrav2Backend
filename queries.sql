@@ -38,3 +38,15 @@ INSERT INTO låner (Fornavn, Etternavn)
 VALUES ('Kenneth', 'Sheikh, Dælenenggata 40');
 
 /*Oppgave 3.6*/
+UPDATE låner
+SET Adresse = 'jordstjerneveien 29'
+WHERE LNr = 9;
+
+/*Oppgave 3.7*/
+SELECT u.UtlånsNr, l.Fornavn, l.Etternavn, b.Tittel, u.utlånsdato
+FROM utlån u
+JOIN låner l ON u.LNr = l.LNr
+JOIN bok b ON u.ISBN = b.ISBN
+ORDER BY u.Utlånsdato;
+
+/*Oppgave 3.8*/
