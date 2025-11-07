@@ -29,6 +29,12 @@ SELECT*
 FROM bok
 WHERE AntallSider > 300;
 
-/*Oppgave 3.3*/
+/*Oppgave 3.4*/
 INSERT INTO bok (ISBN, Tittel, Forfatter, Forlag, Utgittår, AntallSider)
 VALUES (9788201231111, 'Doom fox', 'iceberg slim', 'cappelen damm', 2022, 300);
+
+/*Oppgave 3.5*/
+INSERT INTO låner (Fornavn, Etternavn)
+VALUES ('Kenneth', 'Sheikh, Dælenenggata 40');
+
+/*Oppgave 3.6*/
