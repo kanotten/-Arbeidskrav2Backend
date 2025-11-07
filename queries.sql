@@ -64,3 +64,19 @@ GROUP BY l.LNr
 ORDER BY AntallUtlån DESC;
 
 /*Oppgave 3.10*/
+SELECT b.Tittel, COUNT(u.UtlånsNr) AS AntallUtlån
+FROM bok b
+LEFT JOIN utlån u ON b.ISBN = u.ISBN
+GROUP BY b.ISBN
+ORDER BY AntallUtlån DESC;
+
+/*Oppgave 3.11*/
+SELECT b.Tittel
+FROM bok b
+LEFT JOIN utlån u ON b.ISBN = u.ISBN
+WHERE u.ISBN IS NULL;
+
+/*Oppgave 3.12*/
+SELECT b.Forfatter, COUNT(u.UtlånsNr) AS AntallUtlån
+FROM bok b
+JOIN utlån u ON b.ISBN = u.ISBN
