@@ -14,8 +14,13 @@ LEFT JOIN eksemplar e ON e.ISBN = b.ISBN
 GROUP BY b.ISBN
 ORDER BY b.Tittel;
 
-SELECT
-FROM
-JOIN
-JOIN
-ORDER BY
+/*Oppgave 3.1*/
+SELECT*
+FROM bok
+WHERE Utgittår > 2000;
+
+
+/*Oppgave 3.2*/
+SELECT Forfatter, Tittel
+FROM bok
+ORDER BY Forfatter ASC;
