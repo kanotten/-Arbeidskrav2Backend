@@ -24,7 +24,7 @@ Under er et detalsjert eksempel på tabellene.
 ### eksemplar
 -**ISBN**:TEXT, NOT NULL, FOREIGN KEY → bok(ISBN) – peker til boka eksemplaret tilhører.
 -**EksNr**:INTEGER, NOT NULL, PRIMARY KEY - samme isbn nummer men unikt eksemplar nr av samme bok
--**Antall**: Viser bare hvor mange antall det er av en bok.
+-**Antall**: Viser bare hvor mange sider boken har.
 
 ## LÅNER
 -**LNr**:INTEGER, PRIMARY KEY, AUTOINCREMENT - unikt lånenr som går automatisk.
@@ -37,15 +37,25 @@ Under er et detalsjert eksempel på tabellene.
 -**LNr**:INTEGER, NOT NULL, FOREIGN KEY → låner(LNr) – peker til låneren som låner.
 -**ISBN**:TEXT, NOT NULL, FOREIGN KEY → bok(ISBN) – peker til boka som lånes.
 -**EksNr**:INTEGER, NOT NULL, FOREIGN KEY → eksemplar(EksNr) – peker til eksemplaret som lånes.
--**Levert**:INTEGER, CHECK (Levert IN (0, 1) viser om boken er levert eller ikke med et boolean verdi.
+-**Levert**:INTEGER, CHECK (Levert IN (0, 1) viser om boken er levert eller ikke med et boolean / integer.
 
 
 ## UTRYKK
 Her går vi over utrykk som vi bruker i tabellene for å sette de opp slik at det blir korrekt. at bøker og lånere samt utlån ikke duplikerer o.l.
 
 ## 2. Primærnøkler og Fremmednøkler.
-**Primærnøkler**: er identfikatorer som er unikt for hver rad i en tabell.
-**Fremmednøkler**: er identfikatorer som kobler sammen tabeller og sikrer at dataene henger sammen.
+**PRIMARY KEY**: er identfikatorer som er unikt for hver rad i en tabell.
+**FOREIGN KEY**: er identfikatorer som kobler sammen tabeller og sikrer at dataene henger sammen.
 
 bok.ISBN - unikt nummer for hver bok (primærnøkkel)
 eksemplar.ISBN - peker til det unike eksemplaret av boka ISBN nr tilhører (Fremmednøkkel)
+
+## 3. CONSTRAINTS OG DATAINTEGRITET
+
+**CONSTRAINTS** - Er som regler, det hjelper at alle rader og kolonner holder seg korrekt og eller ikke får ugyldige verdier.
+
+**PRIMARY KEY** - Unikt nummer
+**FOREIGN KEY** - Kobler sammen referanse nummere så det peker mot noe som faktisk finnes.
+**NOT NULL** - Kan ikke være tomt felt.
+**CHECK** - Lager regler som at f.eks antall sider ikke er negativt. som feks at det er en integer.
+**AUTOINCREMENT** - Øker verdi automatisk for hver ny rad. ( lån, utlån)
