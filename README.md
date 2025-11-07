@@ -42,3 +42,10 @@ Under er et detalsjert eksempel på tabellene.
 
 ## UTRYKK
 Her går vi over utrykk som vi bruker i tabellene for å sette de opp slik at det blir korrekt. at bøker og lånere samt utlån ikke duplikerer o.l.
+
+## 2. Primærnøkler og Fremmednøkler.
+**Primærnøkler**: er identfikatorer som er unikt for hver rad i en tabell.
+**Fremmednøkler**: er identfikatorer som kobler sammen tabeller og sikrer at dataene henger sammen.
+
+bok.ISBN - unikt nummer for hver bok (primærnøkkel)
+eksemplar.ISBN - peker til det unike eksemplaret av boka ISBN nr tilhører (Fremmednøkkel)
