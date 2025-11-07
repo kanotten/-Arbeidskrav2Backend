@@ -59,40 +59,42 @@ def registrer_utlan(conn, lnr, isbn, eksnr, utlansdato):
     conn.commit()
     print(f"Utlån registrert. UtlånsNr={cursor.lastrowid}")
 
-    def lever_bok(conn, isbn, eksnr):
-        cursor = conn.cursor()
-        cursor.execute(
-            'UPDATE "utlån" SET levert = 1 WHERE ISBN = ? AND EksNR = ? AND Levert = 0',
-            (isbn, eksnr),
-        )
-        conn.commit()
-        if cursor.rowcount == 0:
-            print("Ingen registrerte utlån for dette eksemplaret")
-        else:
-            print("Bok levert")
 
-    def vis_lanehistorikk(conn, lnr):
-        cursor = conn.cursor()
-        cursror.execute(
-            """
-               SELECT l.Fornavn, l.Etternavn, l.Adresse,
-                      b.Tittel, b.Forfatter,
-                      u.Utlånsdato,
-                      CASE WHEN u.Levert = 1 THEN 'Levert' ELSE 'Utlånt' END AS Status
-               FROM "låner" l
-               JOIN "utlån" u ON l.LNr = u.LNr
-               JOIN bok b ON b.ISBN = u.ISBN
-               WHERE l.LNr = ?
-               """,
-            (lnr,),
-        )
-        rows = cursor.fetchall()
-        if not rows:
-            print("Ingen utlån for denne låneren")
-            return
-            print(f"\nUtlånshistorikk for låner {lnr}:")
-            for row in rows:
-                print(row)
+def lever_bok(conn, isbn, eksnr):
+    cursor = conn.cursor()
+    cursor.execute(
+        'UPDATE "utlån" SET Levert = 1 WHERE ISBN = ? AND EksNr = ? AND Levert = 0',
+        (isbn, eksnr),
+    )
+    conn.commit()
+    if cursor.rowcount == 0:
+        print("Ingen registrerte utlån for dette eksemplaret.")
+    else:
+        print("Bok levert.")
+
+
+def vis_lanerhistorikk(conn, lnr):
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        SELECT l.Fornavn, l.Etternavn, l.Adresse,
+               b.Tittel, b.Forfatter,
+               u.Utlånsdato,
+               CASE WHEN u.Levert = 1 THEN 'Levert' ELSE 'Utlånt' END AS Status
+        FROM "låner" l
+        JOIN "utlån" u ON l.LNr = u.LNr
+        JOIN bok b ON b.ISBN = u.ISBN
+        WHERE l.LNr = ?
+        """,
+        (lnr,),
+    )
+    rows = cursor.fetchall()
+    if not rows:
+        print("Ingen utlån for denne låneren.")
+        return
+    print(f"\nUtlånshistorikk for låner {lnr}:")
+    for row in rows:
+        print(row)
 
 
 if __name__ == "__main__":
@@ -108,10 +110,10 @@ if __name__ == "__main__":
     print("\n== Registrer utlån ==")
     registrer_utlan(conn, 9, "8203209394", 1, "2025-11-07")
 
-    print("\n== lever bok==")
+    print("\n== Lever bok ==")
     lever_bok(conn, "8203209394", 1)
 
-    print("\n== Lånehistorikk ==")
-    vis_lanehistorikk(conn, 9)
+    print("\n== Lånerhistorikk ==")
+    vis_lanerhistorikk(conn, 9)
 
     conn.close()
