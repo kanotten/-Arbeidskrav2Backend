@@ -50,3 +50,17 @@ JOIN bok b ON u.ISBN = b.ISBN
 ORDER BY u.Utlånsdato;
 
 /*Oppgave 3.8*/
+SELECT b.Tittel,COUNT(e.EksNr) AS AntallEksemplarer
+FROM bok b
+LEFT JOIN eksemplar e ON b.ISBN = e.ISBN
+GROUP BY b.ISBN
+ORDER BY b.Tittel;
+
+/*Oppgave 3.9*/
+SELECT l.Fornavn, l.Etternavn, COUNT(u.UtlånsNr) AS AntallUtlån
+FROM låner l
+LEFT JOIN utlån u ON l.LNr = u.LNr
+GROUP BY l.LNr
+ORDER BY AntallUtlån DESC;
+
+/*Oppgave 3.10*/
